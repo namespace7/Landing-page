@@ -1,0 +1,6 @@
+{{ define "content" }}
+{{ template "hero" .Hero }}
+<div class="social-box">
+  {{ range .SocialLinks }}{{ template "social-link" . }}{{ end }}
+</div>
+{{ end }}
