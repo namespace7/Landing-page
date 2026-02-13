@@ -14,9 +14,23 @@ type SocialLink struct {
 	Icon  template.HTML
 }
 
+type LinkItem struct {
+	URL   string
+	Label string
+}
+
+type LinkSection struct {
+	Title string
+	Items []LinkItem
+}
+
 type PageData struct {
-	Hero        string
-	SocialLinks []SocialLink
+	Logo         string
+	Greeting     string
+	Intro        string
+	Closing      string
+	LinkSections []LinkSection
+	SocialLinks  []SocialLink
 }
 
 func main() {
@@ -33,7 +47,20 @@ func main() {
 
 	e.GET("/", func(c *echo.Context) error {
 		data := PageData{
-			Hero: "Hey, I'm Yashwant Kumar",
+			Logo:     "yashwant.kumar",
+			Greeting: "Welcome to my page!",
+			Intro:    "I'm a developer who enjoys building things for the web. I'm still learning these computer stuffs so this space is also to keep some notes for me.",
+			Closing:  "Feel free to stay.",
+			LinkSections: []LinkSection{
+				{
+					Title: "About",
+					Items: []LinkItem{
+						{URL: "https://github.com/namespace7", Label: "GitHub"},
+						{URL: "https://stackoverflow.com/users/9603922/yashwant-kumar", Label: "Stack Overflow"},
+						{URL: "https://www.linkedin.com/in/yashwant-kumar-00b20b83/", Label: "LinkedIn"},
+					},
+				},
+			},
 			SocialLinks: []SocialLink{
 				{
 					URL:   "https://stackoverflow.com/users/9603922/yashwant-kumar",

@@ -1,6 +1,24 @@
 {{ define "content" }}
-{{ template "hero" .Hero }}
-<div class="social-box">
+<section class="intro">
+  <p>{{ .Greeting }}</p>
+  <p>{{ .Intro }}</p>
+  <p>{{ .Closing }}</p>
+</section>
+
+{{ range .LinkSections }}
+<nav class="link-section">
+  <ul>
+    <li><strong>{{ .Title }}</strong>
+      <ul>
+        {{ range .Items }}<li><a href="{{ .URL }}" target="_blank" rel="noopener noreferrer">{{ .Label }}</a></li>
+        {{ end }}
+      </ul>
+    </li>
+  </ul>
+</nav>
+{{ end }}
+
+<div class="social-row">
   {{ range .SocialLinks }}{{ template "social-link" . }}{{ end }}
 </div>
 {{ end }}

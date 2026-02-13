@@ -4,13 +4,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yashwant Kumar</title>
-  <link rel="stylesheet" href="/static/css/style.css">
+  <title>{{ .Logo }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css?v=3">
 </head>
 <body>
-  <div class="container">
-    {{ template "content" . }}
+  <div class="page">
+    <header class="header">
+      <span class="logo">{{ .Logo }}</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18h6"/>
+          <path d="M10 22h4"/>
+          <path d="M12 2v1"/>
+          <path d="M12 7a4 4 0 1 0 0 8"/>
+          <path d="M12 7a4 4 0 1 1 0 8"/>
+          <path d="M4.22 4.22l.71.71"/>
+          <path d="M19.07 4.22l-.71.71"/>
+          <path d="M2 12h1"/>
+          <path d="M21 12h1"/>
+        </svg>
+      </button>
+    </header>
+    <main class="content">
+      {{ template "content" . }}
+    </main>
   </div>
+  <script>
+    (function() {
+      var toggle = document.getElementById('theme-toggle');
+      var stored = localStorage.getItem('theme');
+      if (stored === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+
+      toggle.addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme');
+        if (current === 'dark') {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
 {{ end }}
