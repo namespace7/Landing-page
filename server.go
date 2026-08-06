@@ -3,6 +3,7 @@ package main
 import (
 	"html/template"
 	"net/http"
+	"os"
 
 	"github.com/labstack/echo/v5"
 	"github.com/labstack/echo/v5/middleware"
@@ -40,6 +41,7 @@ func main() {
 	tmpl := template.Must(template.ParseGlob("templates/*.html"))
 	template.Must(tmpl.ParseGlob("templates/components/*.html"))
 	template.Must(tmpl.ParseGlob("templates/pages/*.html"))
+	// template.ParseGlob("./templates/*.html")
 
 	e.Renderer = &echo.TemplateRenderer{Template: tmpl}
 
@@ -82,7 +84,16 @@ func main() {
 		return c.Render(http.StatusOK, "layout", data)
 	})
 
-	if err := e.Start(":1323"); err != nil {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "1323" // local fallback
+	}
+
+	if err := e.Start(":" + port); err != nil {
 		e.Logger.Error("failed to start server", "error", err)
 	}
+
+	// if err := e.Start(":1323"); err != nil {
+	// 	e.Logger.Error("failed to start server", "error", err)
+	// }
 }

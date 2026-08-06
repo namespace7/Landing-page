@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: yashwant-landing
+    runtime: go
+    buildCommand: go build -o app server.go
+    startCommand: ./app
