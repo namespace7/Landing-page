@@ -52,7 +52,7 @@ func main() {
 			Logo:     "yashwant.kumar",
 			Greeting: "Welcome to my page!",
 			// Intro:    "I'm a developer who enjoys building things for the web. I'm still learning these computer stuffs so this space is also to keep some notes for me.",
-			Intro:   "I build reliable backend systems, distributed applications, and production software with Node.js, Go, Redis, MongoDB, and AWS. This site documents the systems I build, the engineering decisions behind them, and the lessons I learn along the way.",
+			Intro:   "I build reliable backend systems, distributed applications, and production software with Node.js, Javascript, Express.js, Sails.js, Go, RabbitMQ, REST APIs, Git, CI/CD, Redis, MongoDB, Render, Twilio and AWS. This site documents the systems I build, the engineering decisions behind them, and the lessons I learn along the way.",
 			Closing: "Feel free to stay.",
 			LinkSections: []LinkSection{
 				{
